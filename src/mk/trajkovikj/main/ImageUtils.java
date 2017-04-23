@@ -38,39 +38,39 @@ public class ImageUtils {
     }
 
 
-    public void processImage(BufferedImage image, int divisions) {
-        new File("C:\\LoadingSpriteCreator\\").mkdirs();
-        if (sliceType == SliceType.VERTICAL) processVerticalImage(image, divisions);
-        else processHorizontalImage(image, divisions);
+    public void processImage(BufferedImage image, int divisions, String outDirectoryPath) {
+        new File(outDirectoryPath).mkdirs();
+        if (sliceType == SliceType.VERTICAL) processVerticalImage(image, divisions, outDirectoryPath);
+        else processHorizontalImage(image, divisions, outDirectoryPath);
     }
 
-    public void processVerticalImage(BufferedImage image, int divisions) {
+    public void processVerticalImage(BufferedImage image, int divisions, String outDirectoryPath) {
         int ppd = calculatePixelsPerDivision(image.getHeight(), divisions);
 
         for (int i = 1; i <= divisions; i++) {
             Rectangle rectangle = new Rectangle(image.getWidth(), i * ppd);
             BufferedImage croppedImage = cropImage(image, rectangle);
-            saveImage(croppedImage, "C:\\LoadingSpriteCreator\\lsc_" + i);
+            saveImage(croppedImage, outDirectoryPath + "\\lsc_" + i);
         }
         double leftover = calculatePixelsPerDivisionRemainder(image.getHeight(), divisions);
         if(leftover > 0) {
             int lastEnum = divisions + 1;
-            saveImage(image, "C:\\LoadingSpriteCreator\\lsc_" + lastEnum);
+            saveImage(image, outDirectoryPath + "\\lsc_" + lastEnum);
         }
     }
 
-    public void processHorizontalImage(BufferedImage image, int divisions) {
+    public void processHorizontalImage(BufferedImage image, int divisions, String outDirectoryPath) {
         int ppd = calculatePixelsPerDivision(image.getWidth(), divisions);
 
         for (int i = 1; i <= divisions; i++) {
             Rectangle rectangle = new Rectangle(i * ppd, image.getHeight());
             BufferedImage croppedImage = cropImage(image, rectangle);
-            saveImage(croppedImage, "C:\\LoadingSpriteCreator\\lsc_" + i);
+            saveImage(croppedImage, outDirectoryPath + "\\lsc_" + i);
         }
         double leftover = calculatePixelsPerDivisionRemainder(image.getWidth(), divisions);
         if(leftover > 0) {
             int lastEnum = divisions + 1;
-            saveImage(image, "C:\\LoadingSpriteCreator\\lsc_" + lastEnum);
+            saveImage(image, outDirectoryPath + "\\lsc_" + lastEnum);
         }
     }
 

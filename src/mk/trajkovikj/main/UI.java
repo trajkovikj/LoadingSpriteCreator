@@ -13,6 +13,7 @@ public class UI {
     private JLabel statusLabel;
     private JPanel controlPanel;
     private File file = null;
+    private File outDirectory = null;
     private JTextField divisions;
 
 
@@ -21,7 +22,7 @@ public class UI {
 
         mainFrame = new JFrame("Loading Sprite Creator");
         mainFrame.setSize(400,400);
-        mainFrame.setLayout(new GridLayout(6, 1));
+        //mainFrame.setLayout());
 
         mainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
@@ -33,7 +34,7 @@ public class UI {
         statusLabel.setSize(350,100);
 
         controlPanel = new JPanel();
-        controlPanel.setLayout(new FlowLayout());
+        controlPanel.setLayout(new GridLayout(6, 1));
 
 
 
@@ -81,8 +82,27 @@ public class UI {
         controlPanel.add(horizontal);
 
 
-        divisions = new JTextField(6);
+        divisions = new JTextField("Divisions",6);
         controlPanel.add(divisions);
+
+
+        final JFileChooser  outDirectoryFileDialog = new JFileChooser();
+        outDirectoryFileDialog.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        JButton btnshowOutDirectoryFileDialog = new JButton("Select output directory");
+
+        btnshowOutDirectoryFileDialog.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnVal = outDirectoryFileDialog.showOpenDialog(mainFrame);
+
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    outDirectory = outDirectoryFileDialog.getSelectedFile();
+                }
+            }
+        });
+
+        controlPanel.add(btnshowOutDirectoryFileDialog);
+
 
         final JButton btnProcess = new JButton("Process");
         btnProcess.addActionListener(e -> {
@@ -93,7 +113,8 @@ public class UI {
             if(divisions == null) return;
 
             ImageUtils imageUtils = new ImageUtils();
-            imageUtils.processImage(image, divisions);
+            String outDirectoryPath = outDirectory == null || outDirectory.getAbsolutePath().isEmpty() ? "C:\\LoadingSpriteCreator" : outDirectory.getAbsolutePath();
+            imageUtils.processImage(image, divisions, outDirectoryPath);
 
         });
         controlPanel.add(btnProcess);
