@@ -19,4 +19,12 @@ In `out > artifacts` directory is an executable jar, which you can double click 
 * **Select output directory** - file chooser to select the output directory of the loading sprite images!
 
 
+## Images
+
+### screenshot
+
 ![Software UI](/images/loading-sprite-creator.png?raw=true "Software UI")
+
+### example image
+
+![Example](/images/loading-sprite-creator-example.png?raw=true "Example")
