@@ -34,7 +34,7 @@ public class UI {
         statusLabel.setSize(350,100);
 
         controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayout(6, 1));
+        controlPanel.setLayout(new GridLayout(8, 1));
 
 
 
@@ -58,28 +58,46 @@ public class UI {
 
         controlPanel.add(showFileDialogButton);
 
-        final JRadioButton vertical = new JRadioButton("Vertical", true);
-        final JRadioButton horizontal = new JRadioButton("Horizontal");
+        final JRadioButton verticalTop = new JRadioButton("Vertical from Top", true);
+        final JRadioButton verticalBottom = new JRadioButton("Vertical from Bottom");
+        final JRadioButton horizontalLeft = new JRadioButton("Horizontal from Left");
+        final JRadioButton horizontalRight = new JRadioButton("Horizontal from Right");
 
-        vertical.addItemListener(new ItemListener() {
+        verticalTop.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                ImageUtils.sliceType = SliceType.VERTICAL;
+                ImageUtils.sliceType = SliceType.VERTICAL_TOP;
             }
         });
 
-        horizontal.addItemListener(new ItemListener() {
+        verticalBottom.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                ImageUtils.sliceType = SliceType.HORIZONTAL;
+                ImageUtils.sliceType = SliceType.VERTICAL_BOTTOM;
+            }
+        });
+
+        horizontalLeft.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                ImageUtils.sliceType = SliceType.HORIZONTAL_LEFT;
+            }
+        });
+
+        horizontalRight.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                ImageUtils.sliceType = SliceType.HORIZONTAL_RIGHT;
             }
         });
 
         ButtonGroup group = new ButtonGroup();
 
-        group.add(vertical);
-        group.add(horizontal);
+        group.add(verticalTop);
+        group.add(verticalBottom);
+        group.add(horizontalLeft);
+        group.add(horizontalRight);
 
-        controlPanel.add(vertical);
-        controlPanel.add(horizontal);
+        controlPanel.add(verticalTop);
+        controlPanel.add(verticalBottom);
+        controlPanel.add(horizontalLeft);
+        controlPanel.add(horizontalRight);
 
 
         divisions = new JTextField("Divisions",6);
