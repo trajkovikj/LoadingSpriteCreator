@@ -16,7 +16,7 @@ In `out > artifacts` directory is an executable jar, which you can double click 
     3. _horizontal left_ - image will be cut horizontally from left to right.
     4. _horizontal right_ - image will be cut horizontally from right to left.
 * **Divisions** - number of how much divisions the image needs to be cut (must be positive integer).
-* **Select output directory** - file chooser to select the output directory of the loading sprite images!
+* **Select output directory** - file chooser to select the output directory of the loading sprite images! Default output directory: `C:\LoadingSpriteCreator`.
 
 
 ## Images
