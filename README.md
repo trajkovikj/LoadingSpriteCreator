@@ -1,14 +1,14 @@
-#**Loading Sprite Creator**
+# Loading Sprite Creator
 
 Usefull tool for creating vertical and horizontal sprite images from a single image!
 
-##Usage
+## Usage
 
-###Installation
+### Installation
 In `out > artifacts` directory is an executable jar, which you can double click on and use the software.
  Other option is to import the project into IntelliJ or eclipse and build it your self.
 
-###UI description
+### UI description
 * **Select image** - file chooser to select image that needs to be created as loading sprite.
 * **Orientation** - radio buttons for choosing the orientation of the loading sprite:
     1. _vertical top_ - image will be cut vertically from top to bottom.
